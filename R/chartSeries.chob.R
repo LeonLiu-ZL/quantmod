@@ -101,19 +101,19 @@ function(x)
       last.Closes <- as.numeric(quantmod::Lag(Closes))
       last.Closes[1] <- Closes[1]
       # create vector of appropriate bar colors
-      bar.col <- ifelse(Opens < Closes,
-                        ifelse(Opens < last.Closes,
+      bar.col <- ifelse(Closes > last.Closes,
+                        ifelse(Opens > Closes,
                                x@colors$dn.up.col,
                                x@colors$up.up.col),
-                        ifelse(Opens < last.Closes,
+                        ifelse(Opens > Closes,
                                x@colors$dn.dn.col,
                                x@colors$up.dn.col))
       # create vector of appropriate border colors
-      bar.border <- ifelse(Opens < Closes,
-                           ifelse(Opens < last.Closes,
+      bar.border <- ifelse(Closes > last.Closes,
+                           ifelse(Opens > Closes,
                                   x@colors$dn.up.border,
                                   x@colors$up.up.border),
-                           ifelse(Opens < last.Closes,
+                           ifelse(Opens > Closes,
                                   x@colors$dn.dn.border,
                                   x@colors$up.dn.border))
     } else {
